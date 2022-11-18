@@ -13,9 +13,11 @@ class AddEditPageVendas extends StatefulWidget {
 
 class _AddEditPageVendasState extends State<AddEditPageVendas> {
 DateTime date = DateTime.now();
-  TextEditingController nome= TextEditingController();
-  TextEditingController data_nascimento = TextEditingController();
-  TextEditingController data_compra = TextEditingController();
+  TextEditingController id_produto= TextEditingController();
+  TextEditingController id_cliente = TextEditingController();
+  TextEditingController id_cupom = TextEditingController();
+  TextEditingController qtd = TextEditingController();
+  TextEditingController data_venda = TextEditingController();
 
 
   bool editMode = false;
@@ -26,17 +28,21 @@ DateTime date = DateTime.now();
       var url = 'http://localhost/trabflutter/vendas/edit.php';
       http.post(Uri.parse(url),body: {
         'id' : widget.list[widget.index]['id'],
-        'nome' : nome.text,
-        'data_nascimento' : data_nascimento.text,
-        'data_compra' : data_compra.text,
+        'id_produto' : id_produto.text,
+        'id_cliente' : id_cliente.text,
+        'id_cupom' : id_cupom.text,
+        'qtd' : qtd.text,
+        'data_venda' : data_venda.text,
 
       });
     }else{
       var url = 'http://localhost/trabflutter/vendas/add.php';
       http.post(Uri.parse(url),body: {
-        'nome' : nome.text,
-        'data_nascimento' : data_nascimento.text,
-        'data_compra' : data_compra.text,
+        'id_produto' : id_produto.text,
+        'id_cliente' : id_cliente.text,
+        'id_cupom' : id_cupom.text,
+        'qtd' : qtd.text,
+        'data_venda' : data_venda.text,
       });
     }
 
@@ -48,9 +54,11 @@ DateTime date = DateTime.now();
     super.initState();
     if(widget.index != null){
       editMode = true;
-      nome.text = widget.list[widget.index]['nome'];
-      data_nascimento.text = widget.list[widget.index]['data_nascimento'];
-      data_compra.text = widget.list[widget.index]['data_compra'];
+      id_produto.text = widget.list[widget.index]['id_produto'];
+      id_cliente.text = widget.list[widget.index]['id_cliente'];
+      id_cupom.text = widget.list[widget.index]['id_cupom'];
+      qtd.text = widget.list[widget.index]['qtd'];
+      data_venda.text = widget.list[widget.index]['data-venda'];
     }
 
   }
@@ -71,60 +79,64 @@ DateTime date = DateTime.now();
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: nome,
+              controller: id_produto,
               decoration: InputDecoration(
                 icon: Icon(Icons.person),
-                labelText: 'NOME DO CLIENTE:',
+                labelText: 'PRODUTO:',
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: data_nascimento,
+              controller: id_cliente,
               decoration: InputDecoration(
-                icon: Icon(Icons.calendar_today),
-                labelText: 'DATA DE NASCIMENTO: ',
+                icon: Icon(Icons.person),
+                labelText: 'CLIENTE:',
               ),
-              readOnly: true,
-              onTap: () async {
-                DateTime newDateNascimento = await showDatePicker(
-                context: context, 
-                initialDate: date,
-                firstDate: DateTime(1900),
-                lastDate: DateTime(2100),
-                );
-                if(newDateNascimento != null ){
-                      print(newDateNascimento);
-                      setState(() {
-                         data_nascimento.text = '${newDateNascimento.year}/${newDateNascimento.month}/${newDateNascimento.day}'; //set output date to TextField value. 
-                      });
-                  }else{
-                      print("A Data não foi selecionada!");
-                  }
-              },
             ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              controller: id_cupom,
+              decoration: InputDecoration(
+                icon: Icon(Icons.person),
+                labelText: 'CUPOM:',
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              controller: qtd,
+              decoration: InputDecoration(
+                icon: Icon(Icons.person),
+                labelText: 'QUANTIDADE:',
+              ),
+            ),
+          ),
+          
            Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: data_compra,
+              controller: data_venda,
               decoration: InputDecoration(
                 icon: Icon(Icons.calendar_today),
                 labelText: 'DATA DE COMPRA: ',
               ),
               readOnly: true,
               onTap: () async {
-                DateTime newDateCompra = await showDatePicker(
+                DateTime newDateVenda = await showDatePicker(
                 context: context, 
                 initialDate: date,
                 firstDate: DateTime(1900),
                 lastDate: DateTime(2100),
                 );
-                if(newDateCompra != null ){
-                      print(newDateCompra);
+                if(newDateVenda != null ){
+                      print(newDateVenda);
                       setState(() {
-                         data_compra.text = '${newDateCompra.year}/${newDateCompra.month}/${newDateCompra.day}'; //set output date to TextField value. 
+                         data_venda.text = '${newDateVenda.year}/${newDateVenda.month}/${newDateVenda.day}'; //set output date to TextField value. 
                       });
                   }else{
                       print("A Data não foi selecionada!");

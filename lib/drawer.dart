@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:phpmysqlcrud/clientes.dart';
 import 'package:phpmysqlcrud/inicio.dart';
 import 'package:phpmysqlcrud/produtos.dart';
+import 'package:phpmysqlcrud/vendas.dart';
 import 'drawer.dart';
 
 
@@ -52,6 +53,15 @@ class meuDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ClientePage(),
+                ));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.cases_sharp),
+              title: Text("Vendas"),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => VendasPage(),
                 ));
               },
             ),

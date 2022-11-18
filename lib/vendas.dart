@@ -89,8 +89,8 @@ class _VendasPageState extends State<VendasPage> {
                           debugPrint('O Botão "Edit" foi apertado!');
                         },
                       ),
-                      title: Text('ID DO PRODUTO: ${list[index]['id']}'),
-                      subtitle: Text('DESCRIÇÃO: ${list[index]['descricao']} \nVALOR: R\$ ${list[index]['valor']}', ),
+                      title: Text('ID DA VENDA: ${list[index]['id']}'),
+                      subtitle: Text('PRODUTO: ${list[index]['id_produto']} \CLIENTE:  ${list[index]['id_cliente']} CUPOM:  ${list[index]['id_cupom']} QUANTIDADE:  ${list[index]['qtd']} DATA VENDA:  ${list[index]['data-venda']}', ),
                       trailing: GestureDetector(
                         child: Icon(Icons.delete),
                         onTap: () {
