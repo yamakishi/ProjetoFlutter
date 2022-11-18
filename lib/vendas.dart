@@ -90,7 +90,7 @@ class _VendasPageState extends State<VendasPage> {
                         },
                       ),
                       title: Text('ID DA VENDA: ${list[index]['id']}'),
-                      subtitle: Text('PRODUTO: ${list[index]['id_produto']} \CLIENTE:  ${list[index]['id_cliente']} CUPOM:  ${list[index]['id_cupom']} QUANTIDADE:  ${list[index]['qtd']} DATA VENDA:  ${list[index]['data-venda']}', ),
+                      subtitle: Text('PRODUTO: ${list[index]['id_produto']} \nCLIENTE:  ${list[index]['id_cliente']} \nCUPOM:  ${list[index]['id_cupom']} \nQUANTIDADE:  ${list[index]['qtd']} \nDATA VENDA:  ${list[index]['data_venda']}', ),
                       trailing: GestureDetector(
                         child: Icon(Icons.delete),
                         onTap: () {
