@@ -66,6 +66,7 @@ class _AddEditPageProdutosState extends State<AddEditPageProdutos> {
             child: TextField(
               controller: descricao,
               decoration: InputDecoration(
+                icon: Icon(Icons.shopping_bag_rounded),
                 labelText: 'Descrição do Produto',
               ),
             ),
@@ -75,6 +76,7 @@ class _AddEditPageProdutosState extends State<AddEditPageProdutos> {
             child: TextField(
               controller: valor,
               decoration: InputDecoration(
+                icon: Icon(Icons.attach_money_sharp),
                 labelText: 'Valor do Produto',
               ),
             ),

@@ -38,7 +38,7 @@ class meuDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: Icon(Icons.home_rounded),
+              leading: Icon(Icons.shopping_bag_rounded),
               title: Text("Produtos"),
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(

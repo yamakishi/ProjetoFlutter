@@ -73,6 +73,7 @@ DateTime date = DateTime.now();
             child: TextField(
               controller: nome,
               decoration: InputDecoration(
+                icon: Icon(Icons.person),
                 labelText: 'NOME DO CLIENTE:',
               ),
             ),
