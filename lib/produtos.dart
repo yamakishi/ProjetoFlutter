@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:phpmysqlcrud/AddEditPageProdutos.dart';
@@ -34,7 +33,7 @@ class ProdutosPage extends StatefulWidget {
 class _ProdutosPageState extends State<ProdutosPage> {
   Future getData() async {
     var url = 'http://localhost/trabFlutter/Produtos/read.php';
-    var response = await http.get(url);
+    var response = await http.get(Uri.parse(url));
     return json.decode(response.body);
   }
 
@@ -97,7 +96,7 @@ class _ProdutosPageState extends State<ProdutosPage> {
                         onTap: () {
                           setState(() {
                             var url = 'http://localhost/trabflutter/Produtos/delete.php';
-                            http.post(url, body: {
+                            http.post(Uri.parse(url), body: {
                               'id': list[index]['id'],
                             });
                           });

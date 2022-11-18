@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'produtos.dart';
+import 'clientes.dart';
 
 class AddEditPageClientes extends StatefulWidget {
+  DateTime date = DateTime.now();
   final List list;
   final int index;
   AddEditPageClientes({this.list,this.index});
@@ -11,9 +12,10 @@ class AddEditPageClientes extends StatefulWidget {
 }
 
 class _AddEditPageClientesState extends State<AddEditPageClientes> {
-
-  TextEditingController descricao = TextEditingController();
-  TextEditingController valor = TextEditingController();
+DateTime date = DateTime.now();
+  TextEditingController nome= TextEditingController();
+  TextEditingController data_nascimento = TextEditingController();
+  TextEditingController data_compra = TextEditingController();
 
 
   bool editMode = false;
@@ -21,18 +23,20 @@ class _AddEditPageClientesState extends State<AddEditPageClientes> {
 
   addUpdateData(){
     if(editMode){
-      var url = 'http://localhost/trabflutter/Produtos/edit.php';
-      http.post(url,body: {
+      var url = 'http://localhost/trabflutter/clientes/edit.php';
+      http.post(Uri.parse(url),body: {
         'id' : widget.list[widget.index]['id'],
-        'descricao' : descricao.text,
-        'valor' : valor.text,
+        'nome' : nome.text,
+        'data_nascimento' : data_nascimento.text,
+        'data_compra' : data_compra.text,
 
       });
     }else{
-      var url = 'http://localhost/trabflutter/Produtos/add.php';
-      http.post(url,body: {
-        'descricao' : descricao.text,
-        'valor' : valor.text,
+      var url = 'http://localhost/trabflutter/clientes/add.php';
+      http.post(Uri.parse(url),body: {
+        'nome' : nome.text,
+        'data_nascimento' : data_nascimento.text,
+        'data_compra' : data_compra.text,
       });
     }
 
@@ -44,8 +48,9 @@ class _AddEditPageClientesState extends State<AddEditPageClientes> {
     super.initState();
     if(widget.index != null){
       editMode = true;
-      descricao.text = widget.list[widget.index]['descricao'];
-      valor.text = widget.list[widget.index]['valor'];
+      nome.text = widget.list[widget.index]['nome'];
+      data_nascimento.text = widget.list[widget.index]['data_nascimento'];
+      data_compra.text = widget.list[widget.index]['data_compra'];
     }
 
   }
@@ -66,19 +71,64 @@ class _AddEditPageClientesState extends State<AddEditPageClientes> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: descricao,
+              controller: nome,
               decoration: InputDecoration(
-                labelText: 'Descrição do Produto',
+                labelText: 'NOME DO CLIENTE:',
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextField(
-              controller: valor,
+              controller: data_nascimento,
               decoration: InputDecoration(
-                labelText: 'Valor do Produto',
+                icon: Icon(Icons.calendar_today),
+                labelText: 'DATA DE NASCIMENTO: ',
               ),
+              readOnly: true,
+              onTap: () async {
+                DateTime newDateNascimento = await showDatePicker(
+                context: context, 
+                initialDate: date,
+                firstDate: DateTime(1900),
+                lastDate: DateTime(2100),
+                );
+                if(newDateNascimento != null ){
+                      print(newDateNascimento);
+                      setState(() {
+                         data_nascimento.text = '${newDateNascimento.year}/${newDateNascimento.month}/${newDateNascimento.day}'; //set output date to TextField value. 
+                      });
+                  }else{
+                      print("A Data não foi selecionada!");
+                  }
+              },
+            ),
+          ),
+           Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: TextField(
+              controller: data_compra,
+              decoration: InputDecoration(
+                icon: Icon(Icons.calendar_today),
+                labelText: 'DATA DE COMPRA: ',
+              ),
+              readOnly: true,
+              onTap: () async {
+                DateTime newDateCompra = await showDatePicker(
+                context: context, 
+                initialDate: date,
+                firstDate: DateTime(1900),
+                lastDate: DateTime(2100),
+                );
+                if(newDateCompra != null ){
+                      print(newDateCompra);
+                      setState(() {
+                         data_compra.text = '${newDateCompra.year}/${newDateCompra.month}/${newDateCompra.day}'; //set output date to TextField value. 
+                      });
+                  }else{
+                      print("A Data não foi selecionada!");
+                  }
+              },
             ),
           ),
 
@@ -90,7 +140,7 @@ class _AddEditPageClientesState extends State<AddEditPageClientes> {
                 setState(() {
                   addUpdateData();
                 });
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ProdutosPage(),),);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => ClientePage(),),);
                 debugPrint('O "ElevatedButton" foi apertado!');
               },
              // color: Colors.blue,

@@ -22,7 +22,7 @@ class _AddEditPageProdutosState extends State<AddEditPageProdutos> {
   addUpdateData(){
     if(editMode){
       var url = 'http://localhost/trabflutter/Produtos/edit.php';
-      http.post(url,body: {
+      http.post(Uri.parse(url),body: {
         'id' : widget.list[widget.index]['id'],
         'descricao' : descricao.text,
         'valor' : valor.text,
@@ -30,7 +30,7 @@ class _AddEditPageProdutosState extends State<AddEditPageProdutos> {
       });
     }else{
       var url = 'http://localhost/trabflutter/Produtos/add.php';
-      http.post(url,body: {
+      http.post(Uri.parse(url),body: {
         'descricao' : descricao.text,
         'valor' : valor.text,
       });

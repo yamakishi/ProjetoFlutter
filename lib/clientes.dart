@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'AddEditPageClientes.dart';
@@ -32,8 +31,8 @@ class ClientePage extends StatefulWidget {
 
 class _ClientePageState extends State<ClientePage> {
   Future getData() async {
-    var url = 'http://localhost/trabFlutter/Produtos/read.php';
-    var response = await http.get(url);
+    var url = 'http://localhost/trabFlutter/clientes/read.php';
+    var response = await http.get(Uri.parse(url));
     return json.decode(response.body);
   }
 
@@ -89,14 +88,14 @@ class _ClientePageState extends State<ClientePage> {
                           debugPrint('O Botão "Edit" foi apertado!');
                         },
                       ),
-                      title: Text('ID DO PRODUTO: ${list[index]['id']}'),
-                      subtitle: Text('DESCRIÇÃO: ${list[index]['descricao']} \nVALOR: R\$ ${list[index]['valor']}', ),
+                      title: Text('ID DO CLIENTE: ${list[index]['id']}'),
+                      subtitle: Text('NOME: ${list[index]['nome']} \nDATA-NASCIMENTO: R\$ ${list[index]['data_nascimento']} \nDATA-COMPRA: R\$ ${list[index]['data_compra']}', ),
                       trailing: GestureDetector(
                         child: Icon(Icons.delete),
                         onTap: () {
                           setState(() {
-                            var url = 'http://localhost/trabflutter/Produtos/delete.php';
-                            http.post(url, body: {
+                            var url = 'http://localhost/trabflutter/clientes/delete.php';
+                            http.post(Uri.parse(url), body: {
                               'id': list[index]['id'],
                             });
                           });
