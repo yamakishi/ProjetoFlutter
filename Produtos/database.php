@@ -3,7 +3,7 @@
 	$hostname = 'localhost';
 	$username = 'root';
 	$pass = '';
-	$dbname = 'php_mysql_crud';
+	$dbname = 'risa_lanches';
 
 	$link = new mysqli($hostname,$username,$pass,$dbname);
 
