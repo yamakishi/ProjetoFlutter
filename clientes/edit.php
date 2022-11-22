@@ -8,6 +8,7 @@ header("Acess-Control-Allow-Headers: Acess-Control-Allow-Headers,Content-Type, A
 
 	include 'database.php';
 
+	$id = $_POST['id'];
 	$nome = $_POST['nome'];
 	$data_nascimento = $_POST['data_nascimento'];
 	$data_compra = $_POST['data_compra'];

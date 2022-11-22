@@ -13,7 +13,7 @@ header("Acess-Control-Allow-Headers: Acess-Control-Allow-Headers,Content-Type, A
 	$valor = $_POST['valor'];
 
 
-	$link->query("UPDATE produto SET descricao = '".$descricao."', valor = '".$valor."' WHERE id = '".$id."'");
+	$link->query("UPDATE produtos SET descricao = '".$descricao."', valor = '".$valor."' WHERE id = '".$id."'");
 
 
 ?>
