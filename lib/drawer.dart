@@ -3,6 +3,7 @@ import 'package:phpmysqlcrud/clientes.dart';
 import 'package:phpmysqlcrud/inicio.dart';
 import 'package:phpmysqlcrud/produtos.dart';
 import 'package:phpmysqlcrud/vendas.dart';
+import 'cupons.dart';
 import 'drawer.dart';
 
 
@@ -53,6 +54,15 @@ class meuDrawer extends StatelessWidget {
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
                   builder: (context) => ClientePage(),
+                ));
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.article_outlined),
+              title: Text("Cupons"),
+              onTap: () {
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => CuponsPage(),
                 ));
               },
             ),
