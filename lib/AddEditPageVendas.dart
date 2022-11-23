@@ -2,27 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'vendas.dart';
 
-const List<String> lista_produto = <String>[
-  'Selecione o Produto',
-  'One',
-  'Two',
-  'Three',
-  'Four'
-];
-const List<String> lista_cliente = <String>[
-  'Selecione o Cliente',
-  'One',
-  'Two',
-  'Three',
-  'Four'
-];
-const List<String> lista_cupon = <String>[
-  'Selecione o Cupon',
-  'One',
-  'Two',
-  'Three',
-  'Four'
-];
+// const List<String> lista_produto = <String>[
+//   'Selecione o Produto',
+//   '1. X-TUDO',
+//   '2. X-SALADA',
+//   '3. X-FRANGO',
+//   '4. COCA-COLA',
+//   '5. GUARANA-ANTARTICA'
+
+// ];
+// const List<String> lista_cliente = <String>[
+//   'Selecione o Cliente',
+//   '1. Ricardo Magalhães',
+//   '2. Samuel Verissimo',
+//   '3. Maria Julia',
+//   '4. Pedro Cesar',
+//   '5. Ana Julia'
+// ];
+// const List<String> lista_cupon = <String>[
+//   'Selecione o Cupon',
+//    '1. DESCONTO10',
+//    '2. DESCONTO20',
+//    '3. DESCONTO30',
+//    '4. DESCONTO40',
+//    '5. DESCONTO50'
+// ];
 
 class AddEditPageVendas extends StatefulWidget {
   DateTime date = DateTime.now();
@@ -41,9 +45,9 @@ class _AddEditPageVendasState extends State<AddEditPageVendas> {
   TextEditingController qtd = TextEditingController();
   TextEditingController data_venda = TextEditingController();
 
-  String dropdownValueProduto = lista_produto.first;
-  String dropdownValueCliente = lista_cliente.first;
-  String dropdownValueCupon = lista_cupon.first;
+  // String dropdownValueProduto = lista_produto.first;
+  // String dropdownValueCliente = lista_cliente.first;
+  // String dropdownValueCupon = lista_cupon.first;
 
 
   bool editMode = false;
@@ -95,76 +99,106 @@ class _AddEditPageVendasState extends State<AddEditPageVendas> {
       ),
       body: ListView(
         children: <Widget>[
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: DropdownButton<String>(
+          //     value: dropdownValueProduto,
+          //     icon: const Icon(Icons.arrow_downward),
+          //     elevation: 16,
+          //     style: const TextStyle(),
+          //     underline: Container(
+          //       height: 2,
+          //     ),
+          //     onChanged: (String value) {
+          //       setState(() {
+          //         dropdownValueProduto = value;
+          //       });
+          //     },
+          //     items:
+          //         lista_produto.map<DropdownMenuItem<String>>((String value) {
+          //       return DropdownMenuItem<String>(
+          //         value: value,
+          //         child: Text(value),
+          //       );
+          //     }).toList(),
+          //   ),
+          // ),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: DropdownButton<String>(
+          //     value: dropdownValueCliente,
+          //     icon: const Icon(Icons.arrow_downward),
+          //     elevation: 16,
+          //     style: const TextStyle(),
+          //     underline: Container(
+          //       height: 2,
+          //     ),
+          //     onChanged: (String value) {
+          //       setState(() {
+          //         dropdownValueCliente = value;
+          //       });
+          //     },
+          //     items:
+          //         lista_cliente.map<DropdownMenuItem<String>>((String value) {
+          //       return DropdownMenuItem<String>(
+          //         value: value,
+          //         child: Text(value),
+          //       );
+          //     }).toList(),
+          //   ),
+          // ),
+          // Padding(
+          //   padding: const EdgeInsets.all(8.0),
+          //   child: DropdownButton<String>(
+          //     value: dropdownValueCupon,
+          //     icon: const Icon(Icons.arrow_downward),
+          //     elevation: 16,
+          //     style: const TextStyle(),
+          //     underline: Container(
+          //       height: 2,
+          //     ),
+          //     onChanged: (String value) {
+          //       setState(() {
+          //         dropdownValueCupon = value;
+          //       });
+          //     },
+          //     items:
+          //         lista_cupon.map<DropdownMenuItem<String>>((String value) {
+          //       return DropdownMenuItem<String>(
+          //         value: value,
+          //         child: Text(value),
+          //       );
+          //     }).toList(),
+          //   ),
+          // ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: DropdownButton<String>(
-              value: dropdownValueProduto,
-              icon: const Icon(Icons.arrow_downward),
-              elevation: 16,
-              style: const TextStyle(),
-              underline: Container(
-                height: 2,
+            child: TextField(
+              controller: id_produto,
+              decoration: InputDecoration(
+                icon: Icon(Icons.shopping_bag_rounded),
+                labelText: 'PRODUTO:',
               ),
-              onChanged: (String value) {
-                setState(() {
-                  dropdownValueProduto = value;
-                });
-              },
-              items:
-                  lista_produto.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: DropdownButton<String>(
-              value: dropdownValueCliente,
-              icon: const Icon(Icons.arrow_downward),
-              elevation: 16,
-              style: const TextStyle(),
-              underline: Container(
-                height: 2,
+            child: TextField(
+              controller: id_cliente,
+              decoration: InputDecoration(
+                icon: Icon(Icons.person),
+                labelText: 'CLIENTE:',
               ),
-              onChanged: (String value) {
-                setState(() {
-                  dropdownValueCliente = value;
-                });
-              },
-              items:
-                  lista_cliente.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
             ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
-            child: DropdownButton<String>(
-              value: dropdownValueCupon,
-              icon: const Icon(Icons.arrow_downward),
-              elevation: 16,
-              style: const TextStyle(),
-              underline: Container(
-                height: 2,
+            child: TextField(
+              controller: id_cupom,
+              decoration: InputDecoration(
+                icon: Icon(Icons.branding_watermark_rounded),
+                labelText: 'CUPOM:',
               ),
-              onChanged: (String value) {
-                setState(() {
-                  dropdownValueCupon = value;
-                });
-              },
-              items:
-                  lista_cupon.map<DropdownMenuItem<String>>((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
             ),
           ),
           Padding(
