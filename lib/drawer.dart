@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:phpmysqlcrud/clientes.dart';
-import 'package:phpmysqlcrud/inicio.dart';
-import 'package:phpmysqlcrud/produtos.dart';
-import 'package:phpmysqlcrud/vendas.dart';
-import 'cupons.dart';
+import 'inicio.dart';
+import 'carro.dart';
+import 'calculadora.dart';
 import 'drawer.dart';
 
 
@@ -20,7 +18,7 @@ class meuDrawer extends StatelessWidget {
                 color: Colors.black,
                 image: DecorationImage(
                   alignment: Alignment.center,
-                  image: AssetImage('assets/images/risa.png'),
+                  image: AssetImage('assets/images/fusca.png'),
                  // fit: BoxFit.cover,
                 ),
               ),
@@ -41,37 +39,19 @@ class meuDrawer extends StatelessWidget {
             ),
             ListTile(
               leading: Icon(Icons.shopping_bag_rounded),
-              title: Text("Produtos"),
+              title: Text("Carro"),
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ProdutosPage(),
+                  builder: (context) => CarroPage(),
                 ));
               },
             ),
             ListTile(
-              leading: Icon(Icons.ballot_rounded),
-              title: Text("Clientes"),
+              leading: Icon(Icons.calculate),
+              title: Text("Calculadora"),
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => ClientePage(),
-                ));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.article_outlined),
-              title: Text("Cupons"),
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => CuponsPage(),
-                ));
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.cases_sharp),
-              title: Text("Vendas"),
-              onTap: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                  builder: (context) => VendasPage(),
+                  builder: (context) => Calculadora(),
                 ));
               },
             ),

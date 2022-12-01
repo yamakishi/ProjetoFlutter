@@ -6,16 +6,15 @@ header("Access-Control-Allow-Methods: PUT, POST, GET, DELETE, OPTIONS");
 header("Content-Type: application/json");
 header("Acess-Control-Allow-Headers: Acess-Control-Allow-Headers,Content-Type, Acess-Control-Allow-Methods, Authorization");
 
-	$hostname = 'localhost';
-	$username = 'root';
-	$pass = '';
-	$dbname = 'risa_lanches';
+	include 'database.php';
 
-	$link = new mysqli($hostname,$username,$pass,$dbname);
+	$idCarro = $_POST['idCarro'];
+	$nomeCarro = $_POST['nomeCarro'];
+	$kmPorLitroAlcool = $_POST['kmPorLitroAlcool'];
+	$kmPorLitroGasolina = $_POST['kmPorLitroGasolina'];
 
-	if ($link->connect_errno) {
-		printf('faild database connect',$link->connect_errno);
-		exit();
-	}
+
+	$link->query("UPDATE carro SET nomeCarro = '".$nomeCarro."', kmPorLitroAlcool = '".$kmPorLitroAlcool."', kmPorLitroGasolina = '".$kmPorLitroGasolina."' WHERE idCarro = '".$idCarro."'");
+
 
 ?>

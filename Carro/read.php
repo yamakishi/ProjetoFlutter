@@ -1,5 +1,4 @@
 <?php 
-
 // Cabeçalho para receber API
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
@@ -13,7 +12,7 @@ header("Acess-Control-Allow-Headers: Acess-Control-Allow-Headers,Content-Type, A
 	
 include 'database.php';
 
-	$query = $link->query("SELECT * FROM clientes");
+	$query = $link->query("SELECT * FROM carro");
 	$result = array();
 
 	while ($rowData = $query->fetch_assoc()) {

@@ -42,7 +42,7 @@ class InitialPage extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             //alignment: Alignment.center,
-            image: AssetImage('assets/images/risa.png'),
+            image: AssetImage('assets/images/fusca.png'),
             //fit: BoxFit.cover,
             //image: NetworkImage('link imagem web')
           ),

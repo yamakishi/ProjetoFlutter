@@ -1,8 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:phpmysqlcrud/AddEditPageVendas.dart';
-import 'AddEditPageVendas.dart';
+import 'AddEditPageCarro.dart';
 import 'drawer.dart';
 
 void main() {
@@ -15,24 +14,24 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Listando Vendas',
+      title: 'Listando Carro',
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: VendasPage(),
+      home: CarroPage(),
     );
   }
 }
 
-class VendasPage extends StatefulWidget {
+class CarroPage extends StatefulWidget {
   @override
-  _VendasPageState createState() => _VendasPageState();
+  _CarroPageState createState() => _CarroPageState();
 }
 
-class _VendasPageState extends State<VendasPage> {
+class _CarroPageState extends State<CarroPage> {
   Future getData() async {
-    var url = 'http://localhost/trabFlutter/Vendas/read.php';
+    var url = 'http://localhost/prova-flutter/Carro/read.php';
     var response = await http.get(Uri.parse(url));
     return json.decode(response.body);
   }
@@ -49,7 +48,7 @@ class _VendasPageState extends State<VendasPage> {
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 37, 35, 35),
         centerTitle: true,
-        title: Text('Listando Vendas'),
+        title: Text('Listando Carro'),
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.black,
@@ -58,7 +57,7 @@ class _VendasPageState extends State<VendasPage> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => AddEditPageVendas(),
+              builder: (context) => AddEditPageCarro(),
             ),
           );
           debugPrint('O "FloatingActionButton" foi apertado!');
@@ -80,7 +79,7 @@ class _VendasPageState extends State<VendasPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => AddEditPageVendas(
+                              builder: (context) => AddEditPageCarro(
                                 list: list,
                                 index: index,
                               ),
@@ -89,13 +88,13 @@ class _VendasPageState extends State<VendasPage> {
                           debugPrint('O Botão "Edit" foi apertado!');
                         },
                       ),
-                      title: Text('ID DA VENDA: ${list[index]['id']}'),
-                      subtitle: Text('PRODUTO: ${list[index]['id_produto']} \nCLIENTE:  ${list[index]['id_cliente']} \nCUPOM:  ${list[index]['id_cupom']} \nQUANTIDADE:  ${list[index]['qtd']} \nDATA VENDA:  ${list[index]['data_venda']}', ),
+                      title: Text('ID DO CARRO: ${list[index]['idCarro']}'),
+                      subtitle: Text('NOME DO CARRO: ${list[index]['nomeCarro']} \nkmPorLitroAlcool: ${list[index]['kmPorLitroAlcool']} \nkmPorLitroGasolina: ${list[index]['kmPorLitroGasolina']}' , ),
                       trailing: GestureDetector(
                         child: Icon(Icons.delete),
                         onTap: () {
                           setState(() {
-                            var url = 'http://localhost/trabflutter/Vendas/delete.php';
+                            var url = 'http://localhost/prova-flutter/Carro/delete.php';
                             http.post(Uri.parse(url), body: {
                               'id': list[index]['id'],
                             });

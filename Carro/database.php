@@ -7,10 +7,16 @@ header("Content-Type: application/json");
 header("Acess-Control-Allow-Headers: Acess-Control-Allow-Headers,Content-Type, Acess-Control-Allow-Methods, Authorization");
 
 
-	include 'database.php';
+	$hostname = 'localhost';
+	$username = 'root';
+	$pass = '';
+	$dbname = 'petrobras';
 
-	$id = $_POST['id'];
+	$link = new mysqli($hostname,$username,$pass,$dbname);
 
-	$link->query("DELETE FROM vendas WHERE id = '".$id."'");
+	if ($link->connect_errno) {
+		printf('faild database connect',$link->connect_errno);
+		exit();
+	}
 
-	?>
+?>
