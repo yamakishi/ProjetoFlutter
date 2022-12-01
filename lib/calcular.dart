@@ -13,32 +13,34 @@ class Calculadora extends StatefulWidget {
 }
 
 class _CalculadoraState extends State<Calculadora> {
-  TextEditingController alcoolController = TextEditingController();
-  TextEditingController gasolinaController = TextEditingController();
+  TextEditingController valorxCalculo = TextEditingController();
+  TextEditingController valoryCalculo = TextEditingController();
 
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  String _infoText = "Informe os dados!";
+  String _infoText = "";
 
   void _resetFields() {
-    alcoolController.text = "";
-    gasolinaController.text = "";
+    valorxCalculo.text = "";
+    valoryCalculo.text = "";
     setState(() {
-      _infoText = "Informe os dados!";
       _formKey = GlobalKey<FormState>();
     });
   }
 
   void _calculate() {
     setState(() {
-      double alcool = double.parse(alcoolController.text);
-      double gasolina = double.parse(gasolinaController.text);
-      double media = alcool / gasolina;
-      if (media < 0.7) {
-        _infoText = "Alcool";
+      double x = double.parse(valorxCalculo.text);
+      double y = double.parse(valoryCalculo.text);
+      double z = x / y;
+
+      // ÁREA DE CALCULO
+
+      if (z < 0.7) {
+        _infoText = "X";
       } else {
-        _infoText = "Gasolina";
-      } 
+        _infoText = "Y";
+      }
     });
   }
 
@@ -46,9 +48,15 @@ class _CalculadoraState extends State<Calculadora> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Calculadora de Combustivel"),
+        // TÍTULO
+        title: Text(
+          "Calculadora Atividade",
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
-        backgroundColor: Colors.black,
+
+        // COR DO BACKGROUND DO MENU
+        backgroundColor: Colors.red,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.refresh),
@@ -56,6 +64,8 @@ class _CalculadoraState extends State<Calculadora> {
           )
         ],
       ),
+
+      // COR DO BACKGROUND
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
@@ -64,32 +74,33 @@ class _CalculadoraState extends State<Calculadora> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              Icon(Icons.car_rental, size: 120.0, color: Colors.black),
               TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                    labelText: "Valor Alcool",
-                    labelStyle: TextStyle(color: Colors.black)),
+                    // VALOR A
+                    labelText: "Valor X",
+                    labelStyle: TextStyle(color: Colors.red)),
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black, fontSize: 25.0),
-                controller: alcoolController,
+                style: TextStyle(color: Colors.red, fontSize: 25.0),
+                controller: valorxCalculo,
                 validator: (value) {
                   if (value.isEmpty) {
-                    return "Insira o valor do Alcool!";
+                    return "Insira o valor de X!";
                   }
                 },
               ),
               TextFormField(
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
-                    labelText: "Valor Gasolina",
-                    labelStyle: TextStyle(color: Colors.black)),
+                    // VALOR B
+                    labelText: "Valor Y",
+                    labelStyle: TextStyle(color: Colors.red)),
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black, fontSize: 25.0),
-                controller: gasolinaController,
+                style: TextStyle(color: Colors.red, fontSize: 25.0),
+                controller: valoryCalculo,
                 validator: (value) {
                   if (value.isEmpty) {
-                    return "Insira o valor da Gasolina";
+                    return "Insira o valor de Y";
                   }
                 },
               ),
@@ -101,16 +112,16 @@ class _CalculadoraState extends State<Calculadora> {
                         onPressed: _calculate,
                         child: Text(
                           "Calcular",
-                          style: TextStyle(color: Colors.white, fontSize: 25.0),
+                          style: TextStyle(color: Colors.black, fontSize: 25.0),
                         ),
                         style: ElevatedButton.styleFrom(
-                          primary: Colors.black,
+                          primary: Colors.red,
                         ))),
               ),
               Text(
                 _infoText,
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black, fontSize: 25.0),
+                style: TextStyle(color: Colors.red, fontSize: 25.0),
               )
             ],
           ),

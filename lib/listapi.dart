@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'AddEditPageCarro.dart';
-import 'drawer.dart';
+import 'paginadeedit.dart';
+import 'menucomdrawer.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,7 +31,7 @@ class CarroPage extends StatefulWidget {
 
 class _CarroPageState extends State<CarroPage> {
   Future getData() async {
-    var url = 'http://localhost/prova-flutter/Carro/read.php';
+    var url = 'http://localhost/prova-yama/Carro/read.php';
     var response = await http.get(Uri.parse(url));
     return json.decode(response.body);
   }
@@ -46,13 +46,19 @@ class _CarroPageState extends State<CarroPage> {
     return Scaffold(
       drawer: meuDrawer(),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 37, 35, 35),
+        backgroundColor: Colors.red,
         centerTitle: true,
-        title: Text('Listando Carro'),
+        title: Text(
+          'Listando Carro',
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.black,
-        child: Icon(Icons.add),
+        backgroundColor: Colors.red,
+        child: Text(
+          "ADD",
+          style: TextStyle(color: Colors.black),
+        ),
         onPressed: () {
           Navigator.push(
             context,
@@ -89,14 +95,17 @@ class _CarroPageState extends State<CarroPage> {
                         },
                       ),
                       title: Text('ID DO CARRO: ${list[index]['idCarro']}'),
-                      subtitle: Text('NOME DO CARRO: ${list[index]['nomeCarro']} \nkmPorLitroAlcool: ${list[index]['kmPorLitroAlcool']} \nkmPorLitroGasolina: ${list[index]['kmPorLitroGasolina']}' , ),
+                      subtitle: Text(
+                        'NOME DO CARRO: ${list[index]['nomeCarro']} \nkmPorLitroAlcool: ${list[index]['kmPorLitroAlcool']} \nkmPorLitroGasolina: ${list[index]['kmPorLitroGasolina']}',
+                      ),
                       trailing: GestureDetector(
                         child: Icon(Icons.delete),
                         onTap: () {
                           setState(() {
-                            var url = 'http://localhost/prova-flutter/Carro/delete.php';
+                            var url =
+                                'http://localhost/prova-yama/Carro/delete.php';
                             http.post(Uri.parse(url), body: {
-                              'id': list[index]['id'],
+                              'idCarro': list[index]['idCarro'],
                             });
                           });
                           debugPrint('O botão "Delete" foi apertado!');

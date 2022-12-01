@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'inicio.dart';
-import 'drawer.dart';
+import 'paginainicio.dart';
+import 'menucomdrawer.dart';
 
 class Inicio extends StatelessWidget {
   const Inicio({Key key}) : super(key: key);
@@ -26,13 +26,13 @@ class InitialPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: meuDrawer(),
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 37, 35, 35),
+        backgroundColor: Colors.red,
         centerTitle: true,
         title: const Text(
           'Inicio',
-          style: TextStyle(color: Colors.white),
+          style: TextStyle(color: Colors.black),
         ),
       ),
       body: Container(
@@ -42,7 +42,8 @@ class InitialPage extends StatelessWidget {
         decoration: const BoxDecoration(
           image: DecorationImage(
             //alignment: Alignment.center,
-            image: AssetImage('assets/images/fusca.png'),
+            image: AssetImage(
+                'assets/images/backzin.jpg'), //BACKGROUND IMAGE (TROCAR)
             //fit: BoxFit.cover,
             //image: NetworkImage('link imagem web')
           ),

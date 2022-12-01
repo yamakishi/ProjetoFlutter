@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // import 'calculadora.dart';
-import 'inicio.dart';
+import 'paginainicio.dart';
 
 void main() {
   runApp(MaterialApp(
@@ -9,4 +9,3 @@ void main() {
     home: InitialPage(),
   ));
 }
-
